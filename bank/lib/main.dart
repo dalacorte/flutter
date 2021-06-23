@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(
-    Text(
-      "Hello, world!",
-      textDirection: TextDirection.ltr,
-    ),
-  );
-}
+void main() => runApp(
+      MaterialApp(
+        home: Text("Hello, World!"),
+      ),
+    );
