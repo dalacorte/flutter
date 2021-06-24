@@ -46,6 +46,9 @@ class FormularioTransferencia extends StatelessWidget {
               _transferencia(_controllerConta, _controllerValor);
             },
             child: Text("Confirmar"),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.pinkAccent.shade100,
+            ),
           )
         ],
       ),
@@ -76,12 +79,32 @@ class Editor extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
       child: TextField(
+        cursorColor: Colors.pinkAccent.shade100,
         controller: controller,
         style: TextStyle(
+          color: Colors.pinkAccent.shade100,
           fontSize: 24.0,
         ),
         decoration: InputDecoration(
-          icon: icon != null ? Icon(icon) : null,
+          labelStyle: TextStyle(color: Colors.pinkAccent.shade100),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.pinkAccent.shade100,
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.pinkAccent.shade100,
+            ),
+          ),
+          border: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.pinkAccent.shade100,
+            ),
+          ),
+          icon: icon != null
+              ? Icon(icon, color: Colors.pinkAccent.shade100)
+              : null,
           labelText: label,
           hintText: hint,
         ),
