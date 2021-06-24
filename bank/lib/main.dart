@@ -20,6 +20,9 @@ class Bank extends StatelessWidget {
 class FormularioTransferencia extends StatelessWidget {
   const FormularioTransferencia({Key? key}) : super(key: key);
 
+  static final TextEditingController _controllerConta = TextEditingController();
+  static final TextEditingController _controllerValor = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +35,7 @@ class FormularioTransferencia extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
             child: TextField(
+              controller: _controllerConta,
               style: TextStyle(
                 fontSize: 24.0,
               ),
@@ -45,6 +49,7 @@ class FormularioTransferencia extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
             child: TextField(
+              controller: _controllerValor,
               style: TextStyle(
                 fontSize: 24.0,
               ),
@@ -57,7 +62,11 @@ class FormularioTransferencia extends StatelessWidget {
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              final int? conta = int.tryParse(_controllerConta.text);
+              final double? valor = double.tryParse(_controllerValor.text);
+              if (conta != null && valor != null) Transferencia(valor, conta);
+            },
             child: Text("Confirmar"),
           )
         ],
@@ -98,15 +107,15 @@ class ItemTransferencia extends StatelessWidget {
       child: ListTile(
         leading: Icon(Icons.monetization_on),
         title: Text(_transferencia.valor.toString()),
-        subtitle: Text(_transferencia.numeroConta.toString()),
+        subtitle: Text(_transferencia.conta.toString()),
       ),
     );
   }
 }
 
 class Transferencia {
-  final double valor;
-  final int numeroConta;
+  final double? valor;
+  final int? conta;
 
-  Transferencia(this.valor, this.numeroConta);
+  Transferencia(this.valor, this.conta);
 }
