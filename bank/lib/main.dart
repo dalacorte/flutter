@@ -22,7 +22,47 @@ class FormularioTransferencia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListaTransferencia();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.pinkAccent.shade100,
+        title: Text("Criando transferencia"),
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+            child: TextField(
+              style: TextStyle(
+                fontSize: 24.0,
+              ),
+              decoration: InputDecoration(
+                labelText: "Número da conta",
+                hintText: "000",
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+            child: TextField(
+              style: TextStyle(
+                fontSize: 24.0,
+              ),
+              decoration: InputDecoration(
+                icon: Icon(Icons.monetization_on),
+                labelText: "Valor",
+                hintText: "0.00",
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text("Confirmar"),
+          )
+        ],
+      ),
+    );
   }
 }
 
@@ -31,7 +71,7 @@ class ListaTransferencia extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.pinkAccent.shade100,
         title: Text('Transferencias'),
       ),
       body: Column(children: <Widget>[
