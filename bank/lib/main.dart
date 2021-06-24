@@ -22,7 +22,7 @@ class ListaTransferencia extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        ItemTransferencia("100", "200"),
+        ItemTransferencia(Transferencia(100, 200)),
       ],
     );
   }
@@ -31,7 +31,7 @@ class ListaTransferencia extends StatelessWidget {
 class ItemTransferencia extends StatelessWidget {
   final Transferencia _transferencia;
 
-	ItemTransferencia(this._transferencia);
+  ItemTransferencia(this._transferencia);
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +46,8 @@ class ItemTransferencia extends StatelessWidget {
 }
 
 class Transferencia {
-	final double valor;
-	final int numeroConta;
+  final double valor;
+  final int numeroConta;
 
-	Transferencia(this.valor, this.numeroConta) 
+  Transferencia(this.valor, this.numeroConta);
 }
