@@ -18,10 +18,8 @@ class Bank extends StatelessWidget {
 }
 
 class FormularioTransferencia extends StatelessWidget {
-  const FormularioTransferencia({Key? key}) : super(key: key);
-
-  static final TextEditingController _controllerConta = TextEditingController();
-  static final TextEditingController _controllerValor = TextEditingController();
+  final TextEditingController _controllerConta = TextEditingController();
+  final TextEditingController _controllerValor = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,44 +30,62 @@ class FormularioTransferencia extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
-            child: TextField(
-              controller: _controllerConta,
-              style: TextStyle(
-                fontSize: 24.0,
-              ),
-              decoration: InputDecoration(
-                labelText: "Número da conta",
-                hintText: "000",
-              ),
-              keyboardType: TextInputType.number,
-            ),
+          Editor(
+            controller: _controllerConta,
+            label: "Número da conta",
+            hint: "000",
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
-            child: TextField(
-              controller: _controllerValor,
-              style: TextStyle(
-                fontSize: 24.0,
-              ),
-              decoration: InputDecoration(
-                icon: Icon(Icons.monetization_on),
-                labelText: "Valor",
-                hintText: "0.00",
-              ),
-              keyboardType: TextInputType.number,
-            ),
+          Editor(
+            controller: _controllerValor,
+            label: "Valor",
+            hint: "0.00",
+            icon: Icons.monetization_on,
           ),
           ElevatedButton(
             onPressed: () {
-              final int? conta = int.tryParse(_controllerConta.text);
-              final double? valor = double.tryParse(_controllerValor.text);
-              if (conta != null && valor != null) Transferencia(valor, conta);
+              _transferencia(_controllerConta, _controllerValor);
             },
             child: Text("Confirmar"),
           )
         ],
+      ),
+    );
+  }
+}
+
+void _transferencia(TextEditingController _controllerConta,
+    TextEditingController _controllerValor) {
+  final int? conta = int.tryParse(_controllerConta.text);
+  final double? valor = double.tryParse(_controllerValor.text);
+  if (conta != null && valor != null) {
+    final transferencia = Transferencia(valor, conta);
+    debugPrint('$transferencia');
+  }
+}
+
+class Editor extends StatelessWidget {
+  final TextEditingController? controller;
+  final String? label;
+  final String? hint;
+  final IconData? icon;
+
+  Editor({this.controller, this.label, this.hint, this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+      child: TextField(
+        controller: controller,
+        style: TextStyle(
+          fontSize: 24.0,
+        ),
+        decoration: InputDecoration(
+          icon: icon != null ? Icon(icon) : null,
+          labelText: label,
+          hintText: hint,
+        ),
+        keyboardType: TextInputType.number,
       ),
     );
   }
